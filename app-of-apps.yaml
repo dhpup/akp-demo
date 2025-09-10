@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps
+spec:
+  project: akp-demo
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/dhpup/akp-demo.git
+    targetRevision: main
+    path: akp-demo/bootstrap/argocd
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: argocd
